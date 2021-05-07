@@ -12,6 +12,8 @@ public class SlimesCapturedCounter : MonoBehaviour
     {
         //Use this to ensure that the Gizmos are being drawn when in Play Mode.
         m_Started = true;
+
+        slimesCounterText.text = ""+0;
     }
 
     void FixedUpdate()

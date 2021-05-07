@@ -6,6 +6,9 @@ public class SlimeScapeCounter : MonoBehaviour
     public Text counterText;
     static public int slimeScapeCounter = 0;
     
+    private void Start() {
+        counterText.text = ""+0;
+    }
     private void FixedUpdate() {
         counterText.text = ""+slimeScapeCounter;
     }
