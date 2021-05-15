@@ -11,18 +11,20 @@ public class Slime : MonoBehaviour
     [SerializeField] private float avoidPlayerDistance = 2.0f;
 
 
-    private Rigidbody slimeRb;
     private bool isOnGround;
-    private bool chilling;
+    public bool isLost = false;
+    private bool isChilling;
     private float chillProbability;
 
+    private Vector3 lastMoveDir;
+    private Rigidbody slimeRb;
     private void Awake() {
         slimeRb = GetComponent<Rigidbody>();
     }
 
     private void Start() {
         isOnGround = true;
-        chilling = false;
+        isChilling = false;
         chillProbability = Random.Range(0,100);
     }
 
@@ -30,17 +32,32 @@ public class Slime : MonoBehaviour
     void Update()
     {
         if(isOnGround){
-            float distaneFromPlayer = (PlayerMousePosition.mousePositionIn3dSpace - transform.position).magnitude;
-            if( distaneFromPlayer <= avoidPlayerDistance){
-                StopCoroutine( Chill() );
-                Vector3 oppositeDirFromPlayer = -(PlayerMousePosition.mousePositionIn3dSpace - transform.position).normalized;
-                Move( oppositeDirFromPlayer, avoidSpeed, avoidJumpForce);
-            }else if(chilling == false){
-                if( IsCHillTime() ){
-                    StartCoroutine( Chill() );
-                }else{
-                    Move( RandomDirection(), idleSpeed, idleJumpForce);
+            if(isLost == false){
+
+                float distaneFromPlayer = (PlayerMousePosition.mousePositionIn3dSpace - transform.position).magnitude;
+
+                if( distaneFromPlayer <= avoidPlayerDistance){
+
+                    StopCoroutine( Chill() );
+                    Vector3 oppositeDirFromPlayer = -(PlayerMousePosition.mousePositionIn3dSpace - transform.position).normalized;
+                    lastMoveDir = oppositeDirFromPlayer;
+                    Move( oppositeDirFromPlayer, avoidSpeed, avoidJumpForce);
+
+                }else if(isChilling == false){
+
+                    if( IsCHillTime() ){
+                        StartCoroutine( Chill() );
+                    }else{
+                        Vector3 moveDir = RandomDirection();
+                        lastMoveDir = moveDir;
+                        Move( moveDir, idleSpeed, idleJumpForce);
+                    }
                 }
+                
+            }
+            else{
+
+                Move( lastMoveDir, avoidSpeed, avoidJumpForce);
             }
         }
     }
@@ -62,14 +79,14 @@ public class Slime : MonoBehaviour
     }
 
     IEnumerator Chill(){
-        chilling = true;
+        isChilling = true;
         int chillTime = Random.Range(1,3);
         float i=0.0f;
         while( i< chillTime){
             yield return new WaitForSeconds(.5f);
             i += 0.5f;
         }
-        chilling = false;
+        isChilling = false;
     }
 
     private void OnCollisionEnter(Collision collision) {
