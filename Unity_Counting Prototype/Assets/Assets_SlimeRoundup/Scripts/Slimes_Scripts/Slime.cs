@@ -41,7 +41,7 @@ public class Slime : MonoBehaviour
                     StopCoroutine( Chill() );
                     Vector3 oppositeDirFromPlayer = -(PlayerMousePosition.mousePositionIn3dSpace - transform.position).normalized;
                     lastMoveDir = oppositeDirFromPlayer;
-                    Move( oppositeDirFromPlayer, avoidSpeed, avoidJumpForce);
+                    MoveTowards( oppositeDirFromPlayer, avoidSpeed, avoidJumpForce);
 
                 }else if(isChilling == false){
 
@@ -50,19 +50,19 @@ public class Slime : MonoBehaviour
                     }else{
                         Vector3 moveDir = RandomDirection();
                         lastMoveDir = moveDir;
-                        Move( moveDir, idleSpeed, idleJumpForce);
+                        MoveTowards( moveDir, idleSpeed, idleJumpForce);
                     }
                 }
                 
             }
             else{
 
-                Move( lastMoveDir, avoidSpeed, avoidJumpForce);
+                MoveTowards( lastMoveDir, avoidSpeed, avoidJumpForce);
             }
         }
     }
 
-    private void Move(Vector3 direction,float moveSpeed, float jumpForce){
+    private void MoveTowards(Vector3 direction,float moveSpeed, float jumpForce){
             slimeRb.AddForce(Vector3.up * jumpForce);
             slimeRb.AddForce(direction * moveSpeed );
             isOnGround = false;

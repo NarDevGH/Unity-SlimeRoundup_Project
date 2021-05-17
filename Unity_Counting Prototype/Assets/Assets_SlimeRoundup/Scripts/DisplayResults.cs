@@ -10,6 +10,6 @@ public class DisplayResults : MonoBehaviour
 
     private void Start() {
         capturedAmmountText.text = _slimesManager.SlimesCaptured +"";
-        scapedAmmountText.text = (SpawnSlimesAtStart.slimesToSpawn - _slimesManager.SlimesCaptured)+"";
+        scapedAmmountText.text = (_slimesManager.CurrentInGameSlimes + _slimesManager.LosedSlimes)+"";
     }
 }

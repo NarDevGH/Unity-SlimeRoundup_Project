@@ -1,42 +1,47 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SlimesManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _slimes;
-    public static GameObject[] slimes;
+    [SerializeField] private Transform _catchArea;
+    [SerializeField] private LayerMask _slimeLayer;
     
+    private int _inGameSlimes;
+    private int _currentInGameSlimes;
+    public int CurrentInGameSlimes{
+        get { return _currentInGameSlimes; }
+    }
+
     private int _slimeCaptured;
     public int SlimesCaptured{
         get{ return _slimeCaptured; }
     }
+
     private int _losedSlimes;
     public int LosedSlimes{
         get{ return _losedSlimes; }
-        set{ _losedSlimes = value; }
-    }
-    private int _inGameSlimes;
-    [SerializeField] private Transform _catchArea;
-    [SerializeField] private LayerMask _slimeLayer;
-
-    public UnityEvent m_allCapturedEvent;
-
-    private void Awake() {
-        slimes = _slimes;
-        
-    }
-
-    private void Start() {
-
-        if(m_allCapturedEvent == null){
-            m_allCapturedEvent = new UnityEvent(); 
-        }
     }
     
+    public event System.Action allSlimesCaptured_Event;
+    public event System.Action cancelSlimesCaptured_Event;
+
+    
+    private bool allSlimesCaptured_WasTrigged = false;
+    private bool allSlimesCaptured_Canceled = true;
     private void FixedUpdate() {
         DetectSlimesInsideCatchArea();
-        if(_inGameSlimes == _slimeCaptured){
-            m_allCapturedEvent.Invoke();
+        _currentInGameSlimes = _inGameSlimes - _slimeCaptured;
+
+        if(_currentInGameSlimes == 0 && !allSlimesCaptured_WasTrigged){
+            
+            allSlimesCaptured_WasTrigged = true;
+            allSlimesCaptured_Canceled = false;
+            allSlimesCaptured_Event();
+        }else if(!allSlimesCaptured_Canceled && _currentInGameSlimes != 0){
+        
+            allSlimesCaptured_Canceled = true;
+            allSlimesCaptured_WasTrigged = false;
+            cancelSlimesCaptured_Event();
         }
     }
 
@@ -52,51 +57,57 @@ public class SlimesManager : MonoBehaviour
         _inGameSlimes --;
     }
 
+#region  SpawnSlimesFunctions
     public void SpawnSlime(Vector3 centerSpawnPoint){
         _inGameSlimes ++;
-        int randSlimeIndex = Random.Range(0,SlimesManager.slimes.Length);
+        _currentInGameSlimes ++;
+        int randSlimeIndex = Random.Range(0,_slimes.Length);
 
-        Instantiate(SlimesManager.slimes[randSlimeIndex],
+        Instantiate(_slimes[randSlimeIndex],
                     new Vector3(centerSpawnPoint.x,centerSpawnPoint.y,centerSpawnPoint.z), 
-                    SlimesManager.slimes[randSlimeIndex].transform.rotation);
+                    _slimes[randSlimeIndex].transform.rotation);
     }
 
     public void SpawnSlime(Vector3 centerSpawnPoint,Vector2 spawnRange){
         _inGameSlimes ++;
+        _currentInGameSlimes ++;
 
-        int randSlimeIndex = Random.Range(0,SlimesManager.slimes.Length);
+        int randSlimeIndex = Random.Range(0,_slimes.Length);
         float xPos = Random.Range(-spawnRange.x,spawnRange.x)+centerSpawnPoint.x;
         float zPos = Random.Range(-spawnRange.y,spawnRange.y)+centerSpawnPoint.z;
-        Instantiate(SlimesManager.slimes[randSlimeIndex],
+        Instantiate(_slimes[randSlimeIndex],
                     new Vector3(xPos,centerSpawnPoint.y,zPos), 
-                    SlimesManager.slimes[randSlimeIndex].transform.rotation);
+                    _slimes[randSlimeIndex].transform.rotation);
     }
 
     public void SpawnSlimes(int ammountToSpawn, Vector3 centerSpawnPoint){
         _inGameSlimes += ammountToSpawn;
+        _currentInGameSlimes += ammountToSpawn;
 
         for (int i = 0; i < ammountToSpawn; i++)
         {
-            int randSlimeIndex = Random.Range(0,SlimesManager.slimes.Length);
+            int randSlimeIndex = Random.Range(0,_slimes.Length);
 
-            Instantiate(SlimesManager.slimes[randSlimeIndex],
+            Instantiate(_slimes[randSlimeIndex],
                         new Vector3(centerSpawnPoint.x,centerSpawnPoint.y,centerSpawnPoint.z), 
-                        SlimesManager.slimes[randSlimeIndex].transform.rotation);
+                        _slimes[randSlimeIndex].transform.rotation);
         }
     }
 
     public void SpawnSlimes(int ammountToSpawn, Vector3 centerSpawnPoint,Vector2 spawnRange){
         _inGameSlimes += ammountToSpawn;
+        _currentInGameSlimes += ammountToSpawn;
         for (int i = 0; i < ammountToSpawn; i++)
         {
-            int randSlimeIndex = Random.Range(0,SlimesManager.slimes.Length);
+            int randSlimeIndex = Random.Range(0,_slimes.Length);
             float xPos = Random.Range(-spawnRange.x,spawnRange.x)+centerSpawnPoint.x;
             float zPos = Random.Range(-spawnRange.y,spawnRange.y)+centerSpawnPoint.z;
-            Instantiate(SlimesManager.slimes[randSlimeIndex],
+            Instantiate(_slimes[randSlimeIndex],
                         new Vector3(xPos,centerSpawnPoint.y,zPos), 
-                        SlimesManager.slimes[randSlimeIndex].transform.rotation);
+                        _slimes[randSlimeIndex].transform.rotation);
         }
     }
-    
+
+#endregion
 
 }
