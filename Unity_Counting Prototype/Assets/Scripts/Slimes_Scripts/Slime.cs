@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Slime : MonoBehaviour
@@ -36,8 +35,7 @@ public class Slime : MonoBehaviour
 
                 float distaneFromPlayer = (PlayerMousePosition.mousePositionIn3dSpace - transform.position).magnitude;
 
-                if( distaneFromPlayer <= avoidPlayerDistance){
-
+                if( distaneFromPlayer <= avoidPlayerDistance && distaneFromPlayer > .5f){ // if the mouse its too close, the slimes its going to go up insted going to a side;
                     StopCoroutine( Chill() );
                     Vector3 oppositeDirFromPlayer = -(PlayerMousePosition.mousePositionIn3dSpace - transform.position).normalized;
                     lastMoveDir = oppositeDirFromPlayer;

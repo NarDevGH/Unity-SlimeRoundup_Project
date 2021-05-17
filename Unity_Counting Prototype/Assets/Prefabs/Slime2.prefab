@@ -130,3 +130,4 @@ MonoBehaviour:
   idleJumpForce: 150
   avoidJumpForce: 100
   avoidPlayerDistance: 2
+  isLost: 0

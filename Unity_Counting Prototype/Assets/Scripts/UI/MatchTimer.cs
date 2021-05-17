@@ -7,6 +7,10 @@ public class MatchTimer : MonoBehaviour
     [SerializeField] private Text _currentMatchTimeText;
     [SerializeField] private Game_Manager _gameManager;
     private Vector2 _currentMatchTime;
+    public Vector2 CurrentMatchTime{
+        get { return _currentMatchTime; }
+    }
+
 
     void Start()
     {

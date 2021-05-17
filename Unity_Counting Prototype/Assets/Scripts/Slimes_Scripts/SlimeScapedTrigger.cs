@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimeScapedTrigger : MonoBehaviour
@@ -8,6 +6,7 @@ public class SlimeScapedTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Slime")){
             if( other.GetComponent<Slime>().isLost == false){
+                print(1);
                 other.GetComponent<Slime>().isLost = true;
                 _slimesManager.SlimeScaped();
             }
