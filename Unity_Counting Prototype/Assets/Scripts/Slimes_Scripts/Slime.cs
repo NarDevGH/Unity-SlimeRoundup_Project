@@ -10,8 +10,9 @@ public class Slime : MonoBehaviour
     [SerializeField] private float avoidPlayerDistance = 2.0f;
 
 
+    [HideInInspector] public bool isLost = false;
+
     private bool isOnGround;
-    public bool isLost = false;
     private bool isChilling;
     private float chillProbability;
 
@@ -54,7 +55,6 @@ public class Slime : MonoBehaviour
                 
             }
             else{
-
                 MoveTowards( lastMoveDir, avoidSpeed, avoidJumpForce);
             }
         }
@@ -63,6 +63,7 @@ public class Slime : MonoBehaviour
     private void MoveTowards(Vector3 direction,float moveSpeed, float jumpForce){
             slimeRb.AddForce(Vector3.up * jumpForce);
             slimeRb.AddForce(direction * moveSpeed );
+            transform.LookAt(direction);
             isOnGround = false;
     }
 

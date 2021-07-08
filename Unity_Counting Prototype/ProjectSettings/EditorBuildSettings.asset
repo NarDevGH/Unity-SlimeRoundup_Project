@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Slime Roundup.unity
+    path: Assets/Scenes/Forest/Forest_VisualTest.unity
     guid: a9e4bad0761025b458da3d14dace5055
   m_configObjects: {}
