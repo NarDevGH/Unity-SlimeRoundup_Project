@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 334196382960558807}
   - component: {fileID: 1808656537973758778}
   - component: {fileID: 3829855377119000178}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Inside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5874924484741907521}
   - component: {fileID: 8236416851974199919}
   - component: {fileID: 7071768080750732345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left_eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 8025860666234214815}
   - component: {fileID: 4811518075121514446}
   - component: {fileID: 167022020702332688}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slime_Orange
   m_TagString: Slime
   m_Icon: {fileID: 0}
@@ -244,7 +244,8 @@ MonoBehaviour:
   avoidSpeed: 75
   idleJumpForce: 150
   avoidJumpForce: 100
-  avoidPlayerDistance: 2
+  minRestTime: 0.5
+  maxRestTime: 2
   isLost: 0
 --- !u!1 &3297641491991413673
 GameObject:
@@ -257,7 +258,7 @@ GameObject:
   - component: {fileID: 514637330709413784}
   - component: {fileID: 6402251269058042165}
   - component: {fileID: 7520618561296582327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right_eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +339,7 @@ GameObject:
   - component: {fileID: 4065917792564388444}
   - component: {fileID: 8362523686990692718}
   - component: {fileID: 4086879721956845546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Outside
   m_TagString: Untagged
   m_Icon: {fileID: 0}

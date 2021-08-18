@@ -13,7 +13,7 @@ public class DisplayResults : MonoBehaviour
 
     private void Start() {
         _capturedAmmountText.text = _slimesManager.SlimesCaptured +"";
-        _scapedAmmountText.text = (_slimesManager.CurrentInGameSlimes + _slimesManager.LosedSlimes)+"";
+        _scapedAmmountText.text = (_slimesManager.CurrentInGameSlimesAmmount + _slimesManager.LosedSlimes)+"";
         _timeElapsedText.text ="Time Elapsed: "+ ( _gameManager.MatchTime.x - _matchTimer.CurrentMatchTime.x )+":"+(_gameManager.MatchTime.y - _matchTimer.CurrentMatchTime.y);
     }
 }

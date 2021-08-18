@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SlimesManager))]
 public class Game_Manager : MonoBehaviour
 {
     [SerializeField] private Vector2 _matchTime;
