@@ -228,14 +228,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 170933561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaedc98fcc8d83640ab438926474b2ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 6caeb336663ca224d8d0534ee9d9062f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionRange: 1
   playerCamera: {fileID: 1568547638}
-  maxDistance: 1000
   playableAreaLayer:
     serializedVersion: 2
     m_Bits: 8
+  slimeLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &170933563
 Transform:
   m_ObjectHideFlags: 0
@@ -1277,7 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbff7728964caf49b9faa441880f488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slimes:
+  _slimeVariants:
   - {fileID: 6874856215418833446, guid: 86bf258c7a01d8f49806f08b9a44665b, type: 3}
   - {fileID: 8678090102454694473, guid: c50617c78aba6f3409686fbde5394bf2, type: 3}
   - {fileID: 3288957338091329880, guid: af9ab95ca84c6d245aa757eaab37ce05, type: 3}

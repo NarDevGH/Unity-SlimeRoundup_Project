@@ -19,10 +19,10 @@ public class LeadSlimesWithMouse : MonoBehaviour
             Collider[] slimesInRange = Physics.OverlapSphere(hit.point, interactionRange, slimeLayer);
             foreach (Collider slime in slimesInRange) 
             {
-                if (slime.GetComponent<Slime>().IsGrounded) 
+                if (slime.GetComponent<Slime_PhysicsBasedMovement>().IsGrounded) 
                 {
                     Vector3 oppositeDirFromPlayer = -(hit.point - slime.transform.position).normalized;
-                    slime.GetComponent<Slime>().AvoidTowardsDir(oppositeDirFromPlayer);                
+                    slime.GetComponent<Slime_LogicHandler>().MovementHandler.AvoidTowardsDir(oppositeDirFromPlayer);                
                 }
             }
         }

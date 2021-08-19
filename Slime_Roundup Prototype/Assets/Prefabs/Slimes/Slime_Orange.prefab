@@ -173,7 +173,9 @@ GameObject:
   - component: {fileID: 2805577543949304802}
   - component: {fileID: 8025860666234214815}
   - component: {fileID: 4811518075121514446}
+  - component: {fileID: 8183942590651755818}
   - component: {fileID: 167022020702332688}
+  - component: {fileID: -7806298254374075269}
   m_Layer: 6
   m_Name: Slime_Orange
   m_TagString: Slime
@@ -228,6 +230,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8183942590651755818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288957338091329880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6dbb0b24c9e3e439bf533f383e5691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minRestTime: 0.5
+  _maxRestTime: 2
 --- !u!114 &167022020702332688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,13 +256,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614f9b49a3378254e9ed75ec5898fe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSpeed: 25
-  avoidSpeed: 75
-  idleJumpForce: 150
-  avoidJumpForce: 100
-  minRestTime: 0.5
-  maxRestTime: 2
-  isLost: 0
+  _idleMoveSpeed: 50
+  _avoidMoveSpeed: 40
+  _idleJumpForce: 100
+  _avoidJumpForce: 80
+--- !u!114 &-7806298254374075269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288957338091329880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc2de88433753d4cbb6fd8fbb88bb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3297641491991413673
 GameObject:
   m_ObjectHideFlags: 0

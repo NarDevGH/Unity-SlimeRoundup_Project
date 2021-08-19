@@ -335,7 +335,9 @@ GameObject:
   - component: {fileID: 8297060242313013491}
   - component: {fileID: 6290963267247366632}
   - component: {fileID: 7468339437800805368}
+  - component: {fileID: 760033561729165552}
   - component: {fileID: 7832629820570696461}
+  - component: {fileID: 1908630332367193941}
   m_Layer: 6
   m_Name: Slime_Green
   m_TagString: Slime
@@ -390,6 +392,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &760033561729165552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678090102454694473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6dbb0b24c9e3e439bf533f383e5691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minRestTime: 0.5
+  _maxRestTime: 2
 --- !u!114 &7832629820570696461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,10 +418,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614f9b49a3378254e9ed75ec5898fe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSpeed: 25
-  avoidSpeed: 75
-  idleJumpForce: 150
-  avoidJumpForce: 100
-  minRestTime: 0.5
-  maxRestTime: 2
-  isLost: 0
+  _idleMoveSpeed: 50
+  _avoidMoveSpeed: 40
+  _idleJumpForce: 100
+  _avoidJumpForce: 80
+--- !u!114 &1908630332367193941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678090102454694473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc2de88433753d4cbb6fd8fbb88bb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
