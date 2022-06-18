@@ -10,6 +10,6 @@ public class ReloadScene : MonoBehaviour
     }
 
     public void LoadScene(){
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(scene.name,LoadSceneMode.Single);
     }
 }

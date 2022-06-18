@@ -1,29 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LeadSlimesWithMouse : MonoBehaviour
 {
-    [SerializeField] float interactionRange;
-    [SerializeField] Camera playerCamera;
-    [SerializeField] LayerMask playableAreaLayer;
-    [SerializeField] LayerMask slimeLayer;
+    [SerializeField] private float interactionRange;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private LayerMask playableAreaLayer;
+    [SerializeField] private LayerMask slimeLayer;
 
+
+    // Gets all slimes inside mouse interacionRange and tell them to avoid mouse positon.
     private void Update()
     {
+        //if not playing return.
+        if (MatchManager.s_CurrentMatchState != MatchManager.MatchState.Playing) return;
+
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100, playableAreaLayer))
         {
             Collider[] slimesInRange = Physics.OverlapSphere(hit.point, interactionRange, slimeLayer);
+
             foreach (Collider slime in slimesInRange) 
             {
-                if (slime.GetComponent<Slime_PhysicsBasedMovement>().IsGrounded) 
-                {
-                    Vector3 oppositeDirFromPlayer = -(hit.point - slime.transform.position).normalized;
-                    slime.GetComponent<Slime_LogicHandler>().MovementHandler.AvoidTowardsDir(oppositeDirFromPlayer);                
-                }
+                slime.GetComponent<Slime_BehaviorsHandler>().AvoidPoint(hit.point);
             }
         }
         
